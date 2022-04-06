@@ -1,7 +1,7 @@
 const cartDiv = document.getElementsByClassName("cartDiv")[0]
 const findListOfItems = document.querySelector(".list-of-items")
-const addButton = newElement.querySelector(".cardDiv__addButton")
-const removeButton = newLi.querySelector(".cardDiv__deleteButton")
+
+
 
 fetch("http://localhost:3001/products")
     .then(response => response.json())
@@ -17,7 +17,7 @@ function renderOneProduct(products) {
     newElement.innerHTML = `
         <div class="cartDiv__product"
             <div class="cartDiv_center"
-                <img src="${products.images}"
+                <img src="http://localhost:3001${products.images[0]}"
                 <h2>${products.name}</h2>
                 <p> Price: €${products.price}</p>
                 <button class="cartDiv__addItem">Add to cart</button>
@@ -50,10 +50,11 @@ function renderCartItem(cartItem) {
 }
 
 //add Btn
+const addButton = newElement.querySelector(".cardDiv__addButton")
 addButton.addEventListener("click", event => {
     findListOfItems.innerText = ""
 
-    fetch("http://localhost:3000/cart_items", {
+    fetch("http://localhost:3001/cart_items", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -72,9 +73,10 @@ addButton.addEventListener("click", event => {
 })
 
 //remove Btn
+const removeButton = newLi.querySelector(".cardDiv__deleteButton")
 removeButton.addEventListener("click", event => {
     newLi.remove()
-    fetch(`http://localhost:3000/cart_items/${cartItem.id}`, {
+    fetch(`http://localhost:3001/cart_items/${cartItem.id}`, {
         method: "DELETE"
     })
     .then(response => response.json())
