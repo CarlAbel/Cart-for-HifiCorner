@@ -1,5 +1,7 @@
 const cartDiv = document.getElementsByClassName("cartDiv")[0]
 const findListOfItems = document.querySelector(".list-of-items")
+const addButton = newElement.querySelector(".cardDiv__addButton")
+const removeButton = newLi.querySelector(".cardDiv__deleteButton")
 
 fetch("http://localhost:3001/products")
     .then(response => response.json())
@@ -48,7 +50,6 @@ function renderCartItem(cartItem) {
 }
 
 //add Btn
-const addButton = newElement.querySelector(".cardDiv__addButton")
 addButton.addEventListener("click", event => {
     findListOfItems.innerText = ""
 
@@ -71,4 +72,15 @@ addButton.addEventListener("click", event => {
 })
 
 //remove Btn
-const removeButton = newLi.querySelector(".cardDiv__deleteButton")
+removeButton.addEventListener("click", event => {
+    newLi.remove()
+    fetch(`http://localhost:3000/cart_items/${cartItem.id}`, {
+        method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(results => {
+        cartArray = results
+        findListOfItems.innerHTML = ""
+        renderAllCartItems(cartArray)
+    })
+})
