@@ -1,8 +1,6 @@
 const cartDiv = document.getElementsByClassName("cartDiv")[0]
 const findListOfItems = document.querySelector(".list-of-items")
 
-
-
 fetch("http://localhost:3001/products")
     .then(response => response.json())
     .then(productsArray => renderAllProducts(productsArray))
@@ -12,7 +10,7 @@ function renderAllProducts(productsArray) {
 }
 
 function renderOneProduct(products) {
-    const newElement = document.createElement("div")
+const newElement = document.createElement("div")    
     newElement.className = "content"
     newElement.innerHTML = `
         <div class="cartDiv__product"
@@ -20,7 +18,7 @@ function renderOneProduct(products) {
                 <img src="http://localhost:3001${products.images[0]}"
                 <h2>${products.name}</h2>
                 <p> Price: €${products.price}</p>
-                <button class="cartDiv__addItem">Add to cart</button>
+                <button class="cartDiv__addButton">Add to cart</button>
             </div>
         </div>
     `
@@ -50,7 +48,7 @@ function renderCartItem(cartItem) {
 }
 
 //add Btn
-const addButton = newElement.querySelector(".cardDiv__addButton")
+const addButton = newElement.querySelector(".cartDiv__addButton")
 addButton.addEventListener("click", event => {
     findListOfItems.innerText = ""
 
