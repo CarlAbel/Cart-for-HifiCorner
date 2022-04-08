@@ -17,7 +17,7 @@ const newElement = document.createElement("div")
             <div class="cartDiv_center"
                 <img src="http://localhost:3001${products.images[0]}"
                 <h2>${products.name}</h2>
-                <p> Price: €${products.price}</p>
+                <p> Price:  £${products.price}</p>
                 <button class="cartDiv__addButton">Add to cart</button>
             </div>
         </div>
@@ -38,7 +38,7 @@ function renderAllCartItems(cartItemsArray) {
 
 function renderCartItem(cartItem) {
     const newLi = document.createElement("li")
-    newLi.innerHTML = `<p id="pTag"> ${cartItem.products.name}: €${cartItem.products.price}
+    newLi.innerHTML = `<p id="pTag"> ${cartItem.products.name}:  £${cartItem.products.price}
     <button class="cardDiv__deleteButton"
         <span>Remove</span>
     </button>
